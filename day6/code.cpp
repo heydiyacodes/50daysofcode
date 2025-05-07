@@ -1,1 +1,26 @@
+//day6: 5th April
+//Problem: Leetcode 203. Remove Linked List Elements
 
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        while (head && head->val == val) {
+            ListNode* temp = head;
+            head = head->next;
+            delete temp;
+        }
+
+        ListNode* current = head;
+
+        while (current && current->next) {
+            if (current->next->val == val) {
+                ListNode* temp = current->next;
+                current->next = current->next->next;
+                delete temp;
+            } else {
+                current = current->next;
+            }
+        }
+        return head;
+    }
+};
